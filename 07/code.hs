@@ -3,15 +3,6 @@ import Data.List
 data Entry = File Int String
 data Directory = None | Dir Directory [Entry] [Directory] String
 
-splitWhen :: Eq a => a -> [a] -> [[a]]
-splitWhen c xs = [(takeWhile func xs)]++[(tail $ dropWhile func xs)]
-  where func = (\x -> (x /= c))
-
-combinePath :: String -> String -> String
-combinePath a b
-   | (head b) == '/' = b
-   | otherwise = a++b
-
 updatedParent :: Directory -> Directory
 updatedParent dir = n_parent
    where (Dir parent _ _ _) = dir
